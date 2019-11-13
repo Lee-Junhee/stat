@@ -4,14 +4,17 @@ else
 	CC = gcc
 endif
 
-all: main.o
-	$(CC) -o <program> main.o
+all: main.o statfxn.o
+	$(CC) -o statpgm main.o statfxn.o
 
-main.o: main.c
+main.o: main.c headers.h
 	$(CC) -c main.c
 
+statfxn.o: statfxn.c headers.h
+	$(CC) -c statfxn.c
+
 run: all
-	./<program>
+	./statpgm
 
 clean:
 	touch main.o
