@@ -2,10 +2,11 @@
 
 void statfile(char *filename) {
 	struct stat info;
-	stat(filename, info);
-	printf("%s:\nsize: %d\nmode:%o\nlast access: %s\n",
+	stat(filename, &info);
+	int mode = info.st_mode % 01000;
+	printf("%s:\nsize: %ld\nmode: %o\nlast access: %ld\n",
 			filename,
 			info.st_size,
-			info.st_mode,
+			mode,
 			info.st_atim.tv_sec);
 }
